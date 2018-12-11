@@ -1,0 +1,54 @@
+<div class="xng-form-block">
+  <div class="xng-card xng-padding--20" *ngIf="newQuestion">
+    <div class="xng-card__content">
+      <div class="xng-columns">
+        <div class="xng-card__header xng-column">
+          <h1 class="xng-h1">{{newQuestion.text}}</h1>
+          <h2 class="xng-h2">Running Score: {{runningScore}}</h2>
+
+          <div class="xng-alert is-card is-error" *ngIf="isError && isLoading">
+            <span>Sorry, that answer was incorrect.</span>
+          </div>
+          <div class="xng-alert is-card is-success" *ngIf="!isError && isLoading">
+            <span>Good work! Your answer was correct!</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="xng-card__body" [class.xng-icon--spinner-grey]="isLoading">
+        <p class="xng-text">
+          <ul class="xng-list">
+            <li class="xng-list__item choice" *ngFor="let answer of newQuestion.answers" (click)="isCorrectAnswer(answer)">
+              <span class="xng-inline-text">{{answer.label}}</span>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="xng-card xng-padding--20" *ngIf="!newQuestion">
+    <div class="xng-card__content">
+      <div class="xng-card__body">
+
+        <p class="xng-text" *ngIf="!newQuestion">
+          <button (click)="this.getQuestion(5)" class="xng-btn xng-btn--with-icon" style="width: 200px;margin: 15px">
+            <span class="xng-icon--arrow-right"></span>
+            <span class="xng-btn-text--grow">Easy</span>
+          </button>
+          <button (click)="this.getQuestion(4)" class="xng-btn xng-btn--with-icon" style="width: 200px;margin: 15px">
+            <span class="xng-icon--arrow-right"></span>
+            <span class="xng-btn-text--grow">Medium</span>
+          </button>
+          <button (click)="this.getQuestion(3)" class="xng-btn xng-btn--with-icon" style="width: 200px;margin: 15px">
+            <span class="xng-icon--arrow-right"></span>
+            <span class="xng-btn-text--grow">Hard</span>
+          </button>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
