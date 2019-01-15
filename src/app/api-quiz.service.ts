@@ -17,7 +17,7 @@ export class ApiQuizService {
 
   constructor(private http: HttpClient) {}
 
-  public getQuestion(levelOfEase): Observable<Question> {
+  public getQuestion(levelOfEase: number): Observable<Question> {
     return this.http.get(this.apiUrl + `/getRandomQuestion`).pipe(
       switchMap(question => {
         return this.http
